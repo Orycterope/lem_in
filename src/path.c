@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 20:20:17 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/01/28 22:05:59 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		path_length(t_path *path)
 		n++;
 		path = path->next;
 	}
-	return (n);
+	return (n - 2);
 }
 
 t_path	*get_shortest_path(t_room *start, t_room *end, int depth, int ignore)
@@ -57,6 +57,24 @@ t_path	*get_shortest_path(t_room *start, t_room *end, int depth, int ignore)
 				return (append_new_room_to_path(start, path));
 		}
 		tunnel = tunnel->next;
+	}
+	return (NULL);
+}
+
+t_path	*get_resonable_path(t_room *s, t_room *e, int ants, t_path *shortest) //ants are ants at start
+{
+	int		max_turns;
+	int		i;
+	t_path	*p;
+
+	max_turns = ants + path_length(shortest);
+	i = 0;
+	while (i < max_turns)
+	{
+		p = get_shortest_path(s, e, i, 1);
+		if (p != NULL)
+			return (p);
+		i++;
 	}
 	return (NULL);
 }
