@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   tunnel.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 19:46:03 by tvermeil         ###   ########.fr       */
+/*   Created: 2016/01/28 18:46:12 by tvermeil          #+#    #+#             */
+/*   Updated: 2016/01/28 19:50:21 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	error(void)
-{
-	ft_putstr_fd("ERROR\n");
-	exit(0);
-}
+#ifndef TUNNEL_H
+# define TUNNEL_H
 
-int	main(void)
+typedef struct		s_tunnel
 {
-	int		ant_nbr;
-	t_room	*rooms;
+	t_room			*room;
+	struct s_path	*next;
+}					t_tunnel;
 
-	ant_nbr = get_lem_nbr();
-	rooms = save_rooms();
-}
+void	*append_new_tunnel_to_room(t_room *room, t_room *neighbor);
+int		get_tunnel_nbr(t_room *room);
+void	free_tunnels(t_room *room);
+
+#endif

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   path.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 19:46:03 by tvermeil         ###   ########.fr       */
+/*   Created: 2016/01/28 18:32:14 by tvermeil          #+#    #+#             */
+/*   Updated: 2016/01/28 18:34:18 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	error(void)
-{
-	ft_putstr_fd("ERROR\n");
-	exit(0);
-}
+#ifndef PATH_H
+# define PATH_H
 
-int	main(void)
+typedef struct		s_path
 {
-	int		ant_nbr;
-	t_room	*rooms;
+	t_room			*room;
+	struct s_path	*next;
+}					t_path;
 
-	ant_nbr = get_lem_nbr();
-	rooms = save_rooms();
-}
+#endif

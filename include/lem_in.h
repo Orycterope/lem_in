@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 19:46:03 by tvermeil         ###   ########.fr       */
+/*   Created: 2016/01/28 19:43:28 by tvermeil          #+#    #+#             */
+/*   Updated: 2016/01/28 19:47:30 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	error(void)
-{
-	ft_putstr_fd("ERROR\n");
-	exit(0);
-}
+#ifndef LEM_IN_H
+# define LEM_IN_H
+# include "get_next_line.h"
+# include "libft.h"
+# include "path.h"
+# include "room.h"
+# include "tunnel.h"
 
-int	main(void)
-{
-	int		ant_nbr;
-	t_room	*rooms;
+void	error(void);
+int		get_lem_nbr(void);
+t_room	*save_rooms(void)
 
-	ant_nbr = get_lem_nbr();
-	rooms = save_rooms();
-}
+#endif
