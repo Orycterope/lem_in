@@ -6,11 +6,20 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 20:57:21 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 22:24:47 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/01/28 22:59:23 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant.h"
+
+void	print_ant(int ant, t_room *room)
+{
+	ft_putchar('L');
+	ft_putnbr(ant);
+	ft_putchar('-');
+	ft_putstr(room->name);
+	ft_putchar(' ');
+}
 
 t_room	*get_ant_position(int n, t_room *room)
 {
@@ -30,6 +39,7 @@ void	*move_ant(t_room *room1, t_room *room2)
 	room2->ant = room1->ant;
 	room2->has_moved = 1;
 	room1->ant = 0;
+	print_ant(room2->ant, room2);
 	if (room1->start_end == 's')
 		room1->ant = room2->ant + 1;
 	if (room2->start_end == 'e')
