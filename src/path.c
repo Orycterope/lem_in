@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 18:44:23 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/01/28 20:20:17 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,29 @@ int		path_length(t_path *path)
 		path = path->next;
 	}
 	return (n);
+}
+
+t_path	*get_shortest_path(t_room *start, t_room *end, int depth, int ignore)
+{
+	t_tunnel	*tunnel;
+	t_path		*path;
+
+	if (depth < 0)
+		return (NULL);
+	if (start == end)
+		return (append_new_room_to_path(start, NULL));
+	tunnel = start->tunnels;
+	while (tunnel != NULL)
+	{
+		if (!(ignore == 1 && tunnel->room->ant != 0))
+		{
+			path = get_shortest_path(tunnel->room, end, depth - 1, 0);
+			if (path != NULL)
+				return (append_new_room_to_path(start, path));
+		}
+		tunnel = tunnel->next;
+	}
+	return (NULL);
 }
 
 void	free_path(t_path *path)
