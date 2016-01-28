@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   room.h                                             :+:      :+:    :+:   */
+/*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/27 16:12:15 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 19:01:11 by tvermeil         ###   ########.fr       */
+/*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
+/*   Updated: 2016/01/28 18:00:26 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROOM_H
-# define ROOM_H
-
-typedef struct		s_room
+void	error(void)
 {
-	char			*name;
-	char			start_end;
-	int				ant;
-	int				has_moved;
-	struct s_tunnel	*tunnels;
-	struct s_room	*next;
-}					t_room;
+	ft_putstr_fd("ERROR\n");
+	exit(0);
+}
 
-t_room	*get_room(char *name, t_room *room_lst);
-t_room	*append_new_room(char *name, t_room *room_lst, char start_end);
-void	free_rooms(t_room *room_lst);
+int	maint(void)
+{
+	int		ant_nbr;
+	t_room	*rooms;
 
-#endif
+	ant_nbr = get_lem_nbr();
+	rooms = save_rooms();
+}

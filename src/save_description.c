@@ -6,14 +6,14 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/27 22:13:38 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/01/28 19:31:29 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "room.h"
 
-int		get_lem_nbr(void)
+int			get_lem_nbr(void)
 {
 	char	*line;
 	int		i;
@@ -38,6 +38,8 @@ static int	is_valid_room_desc(char *line)
 	int		i;
 	int		j;
 
+	if (line[0] == 'L')
+		return (0);
 	i = 0;
 	while (line[i] != ' ' && line[i] != '\0')
 		i++;
@@ -55,7 +57,7 @@ static int	is_valid_room_desc(char *line)
 	return (j == 2);
 }
 
-t_room	*save_rooms(void)
+t_room		*save_rooms(void)
 {
 	t_room	*room_lst;
 	char	*line;
@@ -98,41 +100,25 @@ static int is_valid_tube_desc(char *line)
 	return (get_room(line) != NULL && get_room(&(line[j])) != NULL);
 }
 
-static void	add_neighbor(char *name1, char *name2, t_room *room_lst)
-{
-	t_room	*room1;
-	t_room	*room2;
-	t_room	*new_tab1[];
-	t_room	*new_tab2[];
-
-	address1 = get_room(name1);
-	address2 = get_room(name2);
-	new_tab1 = (t_room **)malloc(sizeof(t_room *) * (room1->neighbors_nbr + 1));
-	new_tab2 = (t_room **)malloc(sizeof(t_room *) * (room2->neighbors_nbr + 1));
-	new_tab1 = ft_memcpy(room1->neighbors, room1->neighbors_nbr + 1);
-	new_tab2 = ft_memcpy(room2->neighbors, room2->neighbors_nbr + 1);
-	new_tab1[room1->neighbors_nbr] = room2;
-	new_tab2[room2->neighbors_nbr] = room1;
-	free(room1->neighbors);
-	free(room2->neighbors);
-	room1->neighbors = new_tab1;
-	room2->neighbors = new_tab2;
-}
-
 int			save_tubes(t_room *room_lst, char *line)
 {
 	int		res;
-	char	*room2;
+	char	*room_name2;
+	t_room	*room1;
+	t_room	*room2;
 
 	res = 1;
-	while (res > 1)
+	while (res > 0)
 	{
 		if (line[0] != '#')
 		{
 			if (!is_valid_tube_desc(line))
 				return (-1);
-			room2 = ft_strchr(line, '\0') + 1;
-			add_neighbor(line, room2, room_lst);
+			room_name2 = ft_strchr(line, '\0') + 1;
+			room1 = get_room(line, room_lst);
+			room2 = get_room(room_name2, room_lst);
+			append_new_tunnel_to_room(room1, room2);
+			append_new_tunnel_to_room(room2, room1);
 		}
 		res = get_next_line(0, line);
 	}
