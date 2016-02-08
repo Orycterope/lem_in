@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 16:22:44 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:49:18 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	save_tubes(t_room *room_lst, char *line)
 		if (line[0] != '#')
 		{
 			if (!is_valid_tube_desc(line, room_lst))
-				return (-1);
+				return (0);
 			room_name2 = ft_strchr(line, '\0') + 1;
 			room1 = get_room(line, room_lst);
 			room2 = get_room(room_name2, room_lst);
@@ -118,7 +118,7 @@ t_room		*save_rooms(void)
 			start_end = 'e';
 		if (line[0] == '#')
 			continue;
-		if (!(start_end = is_valid_room_desc(line)))
+		if (!(is_valid_room_desc(line)))
 			break;
 		room_lst = append_new_room(line, room_lst, start_end);
 		start_end = 0;
@@ -127,4 +127,3 @@ t_room		*save_rooms(void)
 		return (NULL);
 	return (room_lst);
 }
-

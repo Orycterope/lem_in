@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 15:55:53 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:56:03 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ int	main(void)
 	if (start == NULL || end == NULL || start == end)
 		error();
 	start->ant = 1;
+	lem_in(rooms, ant_nbr, start, end);
 }
