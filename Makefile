@@ -6,13 +6,13 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/01/28 23:43:25 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/02/08 14:57:01 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 CC = gcc
-CFLAGS += -Wall -Wextra -Werror -I include
+CFLAGS += -Wall -Wextra -Werror -I include -g
 LDFLAGS += -L. -lft
 
 SRCS =     	src/lem_in.c \

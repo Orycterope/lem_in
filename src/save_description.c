@@ -6,10 +6,11 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 19:49:31 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:22:44 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 #include "room.h"
 #include "tunnel.h"
 
@@ -28,7 +29,7 @@ int			get_lem_nbr(void)
 	}
 	i = 0;
 	while (line[i] != '\0')
-		if (!ft_isdigit(line[i]))
+		if (!ft_isdigit(line[i++]))
 			return (-1);
 	return (ft_atoi(line));
 }
@@ -44,7 +45,7 @@ static int	is_valid_room_desc(char *line)
 	while (line[i] != ' ' && line[i] != '\0')
 		i++;
 	if (line[i] == ' ')
-		line[i++] == '\0';
+		line[i++] = '\0';
 	j = 0;
 	while (line[i] != '\0')
 	{
@@ -54,10 +55,10 @@ static int	is_valid_room_desc(char *line)
 			return (0);
 		i++;
 	}
-	return (j == 2);
+	return (j == 1);
 }
 
-static int is_valid_tube_desc(char *line)
+static int is_valid_tube_desc(char *line, t_room *room_lst)
 {
 	int		i;
 	int		j;
@@ -70,9 +71,10 @@ static int is_valid_tube_desc(char *line)
 	line[i++] = '\0';
 	j = i;
 	while (line[i] != '\0')
-		if (line[i] == '-')
+		if (line[i++] == '-')
 			return (0);
-	return (get_room(line) != NULL && get_room(&(line[j])) != NULL);
+	return (get_room(line, room_lst) != NULL
+			&& get_room(&(line[j]), room_lst) != NULL);
 }
 
 static int	save_tubes(t_room *room_lst, char *line)
@@ -87,7 +89,7 @@ static int	save_tubes(t_room *room_lst, char *line)
 	{
 		if (line[0] != '#')
 		{
-			if (!is_valid_tube_desc(line))
+			if (!is_valid_tube_desc(line, room_lst))
 				return (-1);
 			room_name2 = ft_strchr(line, '\0') + 1;
 			room1 = get_room(line, room_lst);
@@ -95,7 +97,7 @@ static int	save_tubes(t_room *room_lst, char *line)
 			append_new_tunnel_to_room(room1, room2);
 			append_new_tunnel_to_room(room2, room1);
 		}
-		res = get_next_line(0, line);
+		res = get_next_line(0, &line);
 	}
 	return (res);
 }
@@ -107,7 +109,8 @@ t_room		*save_rooms(void)
 	char	start_end;
 
 	start_end = 0;
-	while (get_next_line(0, &line) > 1)
+	room_lst = NULL;
+	while (get_next_line(0, &line) > 0)
 	{
 		if (ft_strcmp("##start", line) == 0)
 			start_end = 's';
@@ -120,7 +123,7 @@ t_room		*save_rooms(void)
 		room_lst = append_new_room(line, room_lst, start_end);
 		start_end = 0;
 	}
-	if (save_tubes(room_lst, line) == -1)
+	if (room_lst == NULL || save_tubes(room_lst, line) == -1)
 		return (NULL);
 	return (room_lst);
 }

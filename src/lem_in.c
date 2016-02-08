@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 23:53:06 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/08 15:55:53 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	error(void)
 void	execute_turn(t_room *rooms, int *first_ant, int last_ant, t_path *shortest)
 {
 	t_room	*room;
-	t_path	*path;
 	t_room	*start;
 	int		ant;
 	int		moved;
@@ -72,6 +71,8 @@ int	main(void)
 	t_room	*end;
 
 	ant_nbr = get_lem_nbr();
+	if (ant_nbr <= 0)
+		error();
 	rooms = save_rooms();
 	start = get_start(rooms);
 	end = get_end(rooms);

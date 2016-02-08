@@ -6,12 +6,15 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:32:14 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 22:13:27 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/08 14:29:20 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PATH_H
 # define PATH_H
+# include "libft.h"
+# include "room.h"
+# include "tunnel.h"
 
 typedef struct		s_path
 {

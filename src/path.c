@@ -6,12 +6,11 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 22:05:59 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/08 14:27:42 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "path.h"
-
 
 t_path	*append_new_room_to_path(t_room *room, t_path *path)
 {

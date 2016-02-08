@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 20:57:21 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 22:59:23 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/08 14:25:57 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_ant(int ant, t_room *room)
 	ft_putchar(' ');
 }
 
-t_room	*get_ant_position(int n, t_room *room)
+t_room	*get_ant_position(int ant, t_room *room)
 {
 	while (room != NULL)
 	{
@@ -32,10 +32,10 @@ t_room	*get_ant_position(int n, t_room *room)
 	return (NULL);
 }
 
-void	*move_ant(t_room *room1, t_room *room2)
+void	move_ant(t_room *room1, t_room *room2)
 {
 	if (room1->ant == 0 || room2->ant != 0)
-		return (); // norme
+		return ; // norme
 	room2->ant = room1->ant;
 	room2->has_moved = 1;
 	room1->ant = 0;
@@ -48,7 +48,7 @@ void	*move_ant(t_room *room1, t_room *room2)
 
 int		ant_decide(t_room *location, int rmng_ants, t_room *rooms, t_path *s)
 {
-	t_path	path;
+	t_path	*path;
 	int		moved;
 
 	moved = 0;
