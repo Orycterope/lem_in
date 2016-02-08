@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 14:27:42 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/08 20:54:23 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_path	*get_resonable_path(t_room *s, t_room *e, int ants, t_path *shortest) //a
 
 	max_turns = ants + path_length(shortest);
 	i = 0;
-	while (i < max_turns)
+	while (i <= max_turns)
 	{
 		p = get_shortest_path(s, e, i, 1);
 		if (p != NULL)
