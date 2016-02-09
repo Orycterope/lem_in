@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 20:57:21 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 18:24:51 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:02:46 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_room	*get_ant_position(int ant, t_room *room)
 void	move_ant(t_room *room1, t_room *room2)
 {
 	if (room1->ant == 0 || room2->ant != 0)
-		return;
+		return ;
 	room2->ant = room1->ant;
 	room1->ant = 0;
 	print_ant(room2->ant, room2);

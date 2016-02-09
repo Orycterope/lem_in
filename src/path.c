@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 19:23:00 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:08:14 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	save_distances(t_room *room, int end_dist)
 	tunnel = room->tunnels;
 	while (tunnel != NULL)
 	{
-		if (tunnel->room->end_dist == -1 || tunnel->room->end_dist > end_dist + 1)
+		if (tunnel->room->end_dist == -1
+				|| tunnel->room->end_dist > end_dist + 1)
 			save_distances(tunnel->room, end_dist + 1);
 		tunnel = tunnel->next;
 	}

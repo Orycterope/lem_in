@@ -6,12 +6,11 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:49:06 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 19:50:05 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:08:43 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tunnel.h"
-
 
 void		*append_new_tunnel_to_room(t_room *room, t_room *neighbor)
 {
@@ -58,7 +57,6 @@ static void	swap_tunnels(t_room *room, t_tunnel *first)
 	first->next = second->next;
 	second->next = first;
 }
-
 
 void		sort_tunnels_by_dist(t_room *room)
 {

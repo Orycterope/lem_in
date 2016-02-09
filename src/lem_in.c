@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 21:00:48 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:07:50 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	error(void)
 	exit(0);
 }
 
-void	execute_turn(t_room *rooms, t_room *start, int *first_ant, int total_ants)
+void	execute_turn(t_room *rooms, t_room *start, int *first_ant, int tt_ants)
 {
 	t_room		*room;
 	t_tunnel	*first_tunnel;
@@ -27,12 +27,12 @@ void	execute_turn(t_room *rooms, t_room *start, int *first_ant, int total_ants)
 
 	ant = *first_ant;
 	first_tunnel = start->tunnels;
-	while (ant <= total_ants)
+	while (ant <= tt_ants)
 	{
 		room = get_ant_position(ant, rooms);
 		if (room != NULL)
 		{
-			moved = ant_decide(room, total_ants - ant + 1, start);
+			moved = ant_decide(room, tt_ants - ant + 1, start);
 			if (room == start && moved == 0)
 				break;
 			else if (get_ant_position(ant, rooms) == NULL)
