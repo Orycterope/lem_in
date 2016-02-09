@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 20:29:36 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:13:53 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ void	execute_turn(t_room *rooms, int *first_ant, int last_ant, t_path *shortest)
 			if (room == start && moved == 0)
 				break;
 			else if (get_ant_position(ant, rooms) == NULL)
+			{
 				*first_ant += 1;
+				if (room == start)
+					break;
+			}
 		}
 		ant++;
 	}
