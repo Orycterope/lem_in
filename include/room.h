@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 16:12:15 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 17:26:03 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 22:55:47 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ typedef struct		s_room
 	struct s_room	*next;
 }					t_room;
 
-t_room	*get_room(char *name, t_room *room_lst);
-t_room	*get_start(t_room *room_lst);
-t_room	*get_end(t_room *room_lst);
-t_room	*append_new_room(char *name, t_room *room_lst, char start_end);
-void	free_rooms(t_room *room_lst);
-void	free_tunnels(t_room *room);
+t_room				*get_room(char *name, t_room *room_lst);
+t_room				*get_start(t_room *room_lst);
+t_room				*get_end(t_room *room_lst);
+t_room				*append_new_room(char *name, t_room *room_lst, char s_e);
+void				free_rooms(t_room *room_lst);
+void				free_tunnels(t_room *room);
 
 #endif

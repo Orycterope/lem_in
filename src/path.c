@@ -6,13 +6,13 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 21:08:14 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 22:51:34 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "path.h"
 
-t_room	*get_resonable_path(t_room *room, t_room *start, int ants) //ants are ants at start
+t_room	*get_resonable_path(t_room *room, t_room *start, int ants)
 {
 	int			max_turns;
 	t_tunnel	*tunnel;

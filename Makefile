@@ -6,7 +6,7 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/02/09 22:47:39 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/02/09 22:55:03 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,7 +127,6 @@ re: fclean all
 ac: all clean
 
 norme:
-	norminette $(LIBFT_SRC) $(SRC) 
-	norminette $(INC_PATH)*.h
+	norminette $(LIBFT_SRC) $(SRC) include/*.h
 
 .PHONY: all clean fclean re

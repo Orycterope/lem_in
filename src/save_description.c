@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 16:49:18 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 22:52:46 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	is_valid_room_desc(char *line)
 	return (j == 1);
 }
 
-static int is_valid_tube_desc(char *line, t_room *room_lst)
+static int	is_valid_tube_desc(char *line, t_room *room_lst)
 {
 	int		i;
 	int		j;
@@ -119,7 +119,7 @@ t_room		*save_rooms(void)
 		if (line[0] == '#')
 			continue;
 		if (!(is_valid_room_desc(line)))
-			break;
+			break ;
 		room_lst = append_new_room(line, room_lst, start_end);
 		start_end = 0;
 	}

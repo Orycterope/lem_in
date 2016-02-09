@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 21:07:50 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 23:11:04 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	execute_turn(t_room *rooms, t_room *start, int *first_ant, int tt_ants)
 		{
 			moved = ant_decide(room, tt_ants - ant + 1, start);
 			if (room == start && moved == 0)
-				break;
+				break ;
 			else if (get_ant_position(ant, rooms) == NULL)
 			{
 				*first_ant += 1;
@@ -57,7 +57,7 @@ void	lem_in(t_room *rooms, int ants, t_room *start, t_room *end)
 	save_distances(end, 0);
 	if (start->end_dist == -1)
 		error();
-	while (start->ant < ants || get_ant_position(ants, rooms) != NULL)
+	while (start->ant < ants || get_ant_position(first_ant, rooms) != NULL)
 	{
 		execute_turn(rooms, start, &first_ant, ants);
 		ft_putchar('\n');

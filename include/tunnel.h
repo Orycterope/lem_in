@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:46:12 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 19:22:34 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 22:56:24 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ typedef struct		s_tunnel
 	struct s_tunnel	*next;
 }					t_tunnel;
 
-void	*append_new_tunnel_to_room(t_room *room, t_room *neighbor);
-int		get_tunnel_nbr(t_room *room);
-void	sort_tunnels_by_dist(t_room *room);
-void	free_tunnels(t_room *room);
+void				*append_new_tunnel_to_room(t_room *room, t_room *neighbor);
+int					get_tunnel_nbr(t_room *room);
+void				sort_tunnels_by_dist(t_room *room);
+void				free_tunnels(t_room *room);
 
 #endif
