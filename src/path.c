@@ -6,34 +6,11 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 18:27:04 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:23:00 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "path.h"
-
-/*t_room	*get_shortest_path(t_room *start)  //Still used ?
-{
-	t_tunnel	*tunnel;
-	t_room		*best_room;
-	int			best_dist;
-
-	tunnel = start->tunnels;
-	if (tunnel == NULL)
-		return (NULL);
-	best_room = tunnel->room;
-	best_dist = tunnel->room->end_dist;
-	while (tunnel != NULL)
-	{
-		if (tunnel->room->end_dist < best_dist)
-		{
-			best_room = tunnel->room;
-			best_dist = tunnel->room->end_dist;
-		}
-		tunnel = tunnel->next;
-	}
-	return (best_room);
-}*/
 
 t_room	*get_resonable_path(t_room *room, t_room *start, int ants) //ants are ants at start
 {
@@ -65,4 +42,5 @@ void	save_distances(t_room *room, int end_dist)
 			save_distances(tunnel->room, end_dist + 1);
 		tunnel = tunnel->next;
 	}
+	sort_tunnels_by_dist(room);
 }

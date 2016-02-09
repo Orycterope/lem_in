@@ -6,14 +6,14 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:49:06 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 18:59:59 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:50:05 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tunnel.h"
 
 
-void	*append_new_tunnel_to_room(t_room *room, t_room *neighbor)
+void		*append_new_tunnel_to_room(t_room *room, t_room *neighbor)
 {
 	t_tunnel	*new;
 
@@ -26,22 +26,59 @@ void	*append_new_tunnel_to_room(t_room *room, t_room *neighbor)
 	return (new);
 }
 
-int		get_tunnel_nbr(t_room *room)
+static int	tunnels_are_sorted(t_room *room)
 {
-	int			n;
 	t_tunnel	*tunnel;
 
-	n = 0;
 	tunnel = room->tunnels;
-	while (tunnel != NULL)
+	while (tunnel->next != NULL)
 	{
-		n++;
+		if (tunnel->room->end_dist > tunnel->next->room->end_dist)
+			return (0);
 		tunnel = tunnel->next;
 	}
-	return (n);
+	return (1);
 }
 
-void	free_tunnels(t_room *room)
+static void	swap_tunnels(t_room *room, t_tunnel *first)
+{
+	t_tunnel	*second;
+	t_tunnel	*parser;
+
+	second = first->next;
+	if (first == room->tunnels)
+		room->tunnels = second;
+	else
+	{
+		parser = room->tunnels;
+		while (parser->next != first)
+			parser = parser->next;
+		parser->next = second;
+	}
+	first->next = second->next;
+	second->next = first;
+}
+
+
+void		sort_tunnels_by_dist(t_room *room)
+{
+	t_tunnel	*tunnel;
+
+	if (room->tunnels == NULL)
+		return ;
+	while (!(tunnels_are_sorted(room)))
+	{
+		tunnel = room->tunnels;
+		while (tunnel != NULL && tunnel->next != NULL)
+		{
+			if (tunnel->room->end_dist > tunnel->next->room->end_dist)
+				swap_tunnels(room, tunnel);
+			tunnel = tunnel->next;
+		}
+	}
+}
+
+void		free_tunnels(t_room *room)
 {
 	t_tunnel	*next;
 	t_tunnel	*tunnel;
