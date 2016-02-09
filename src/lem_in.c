@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 23:11:04 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 23:22:23 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	error(void)
 	exit(0);
 }
 
-void	execute_turn(t_room *rooms, t_room *start, int *first_ant, int tt_ants)
+void	execute_turn(t_room *rooms, t_room *start, int first_ant, int tt_ants)
 {
 	t_room		*room;
 	t_tunnel	*first_tunnel;
 	int			ant;
 	int			moved;
 
-	ant = *first_ant;
+	ant = first_ant;
 	first_tunnel = start->tunnels;
 	while (ant <= tt_ants)
 	{
@@ -37,7 +37,6 @@ void	execute_turn(t_room *rooms, t_room *start, int *first_ant, int tt_ants)
 				break ;
 			else if (get_ant_position(ant, rooms) == NULL)
 			{
-				*first_ant += 1;
 				if (room == start)
 					start->tunnels = start->tunnels->next;
 			}
@@ -59,7 +58,9 @@ void	lem_in(t_room *rooms, int ants, t_room *start, t_room *end)
 		error();
 	while (start->ant < ants || get_ant_position(first_ant, rooms) != NULL)
 	{
-		execute_turn(rooms, start, &first_ant, ants);
+		execute_turn(rooms, start, first_ant, ants);
+		while (get_ant_position(first_ant, rooms) == NULL && first_ant < ants)
+				first_ant++;
 		ft_putchar('\n');
 	}
 }

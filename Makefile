@@ -6,14 +6,14 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/02/09 22:55:03 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/02/10 00:06:36 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 CC = gcc
 CPPFLAGS = -I include
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 LDFLAGS = -L.
 LDLIBS = -lft
 
@@ -101,11 +101,11 @@ LIBFT_OBJ = $(addprefix $(LIBFT_OBJ_PATH)/,$(LIBFT_OBJ_NAME))
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	$(CC) $(CCFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(LIBFT_OBJ_PATH)%.o: $(LIBFT_SRC_PATH)%.c
 	@mkdir -p $(LIBFT_OBJ_PATH)
-	$(CC) $(CCFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 all: $(NAME)
 
