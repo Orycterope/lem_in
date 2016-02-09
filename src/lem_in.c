@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 14:13:53 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:22:49 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	error(void)
 	exit(0);
 }
 
-void	execute_turn(t_room *rooms, int *first_ant, int last_ant, t_path *shortest)
+void	execute_turn(t_room *rooms, int *first_ant, int last_ant)
 {
 	t_room	*room;
 	t_room	*start;
@@ -32,7 +32,7 @@ void	execute_turn(t_room *rooms, int *first_ant, int last_ant, t_path *shortest)
 		room = get_ant_position(ant, rooms);
 		if (room != NULL)
 		{
-			moved = ant_decide(room, last_ant - ant + 1, rooms, shortest);
+			moved = ant_decide(room, last_ant - ant + 1, rooms, start);
 			if (room == start && moved == 0)
 				break;
 			else if (get_ant_position(ant, rooms) == NULL)
@@ -48,20 +48,17 @@ void	execute_turn(t_room *rooms, int *first_ant, int last_ant, t_path *shortest)
 
 void	lem_in(t_room *rooms, int ants, t_room *start, t_room *end)
 {
-	t_path	*shortest;
 	int		first_ant;
 	int		i;
 
 	i = 0;
-	shortest = NULL;
 	first_ant = 1;
-	while (shortest == NULL && i < 100)
-		shortest = get_shortest_path(start, end, i++, 0);
-	if (shortest == NULL)
+	save_distances(end, 0);
+	if (start->end_dist == -1)
 		error();
 	while (start->ant < ants || get_ant_position(ants, rooms) != NULL)
 	{
-		execute_turn(rooms, &first_ant, ants, shortest);
+		execute_turn(rooms, &first_ant, ants);
 		ft_putchar('\n');
 	}
 }

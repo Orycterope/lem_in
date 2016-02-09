@@ -6,86 +6,63 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 20:54:23 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:27:04 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "path.h"
 
-t_path	*append_new_room_to_path(t_room *room, t_path *path)
-{
-	t_path	*new;
-
-	new = (t_path*)malloc(sizeof(t_path));
-	if (new == NULL)
-		return (NULL);
-	new->room = room;
-	new->next = path;
-	return (new);
-}
-
-int		path_length(t_path *path)
-{
-	int	n;
-
-	n = 0;
-	while (path != NULL)
-	{
-		n++;
-		path = path->next;
-	}
-	return (n - 2);
-}
-
-t_path	*get_shortest_path(t_room *start, t_room *end, int depth, int ignore)
+/*t_room	*get_shortest_path(t_room *start)  //Still used ?
 {
 	t_tunnel	*tunnel;
-	t_path		*path;
+	t_room		*best_room;
+	int			best_dist;
 
-	if (depth < 0)
-		return (NULL);
-	if (start == end)
-		return (append_new_room_to_path(start, NULL));
 	tunnel = start->tunnels;
+	if (tunnel == NULL)
+		return (NULL);
+	best_room = tunnel->room;
+	best_dist = tunnel->room->end_dist;
 	while (tunnel != NULL)
 	{
-		if (!(ignore == 1 && tunnel->room->ant != 0))
+		if (tunnel->room->end_dist < best_dist)
 		{
-			path = get_shortest_path(tunnel->room, end, depth - 1, 0);
-			if (path != NULL)
-				return (append_new_room_to_path(start, path));
+			best_room = tunnel->room;
+			best_dist = tunnel->room->end_dist;
 		}
+		tunnel = tunnel->next;
+	}
+	return (best_room);
+}*/
+
+t_room	*get_resonable_path(t_room *room, t_room *start, int ants) //ants are ants at start
+{
+	int			max_turns;
+	t_tunnel	*tunnel;
+
+	max_turns = ants + start->end_dist - 1; // -2 ?
+	tunnel = room->tunnels;
+	while (tunnel != NULL)
+	{
+		if (tunnel->room->ant == 0 && tunnel->room->end_dist <= max_turns)
+			return (tunnel->room);
 		tunnel = tunnel->next;
 	}
 	return (NULL);
 }
 
-t_path	*get_resonable_path(t_room *s, t_room *e, int ants, t_path *shortest) //ants are ants at start
+void	save_distances(t_room *room, int end_dist)
 {
-	int		max_turns;
-	int		i;
-	t_path	*p;
+	t_tunnel	*tunnel;
 
-	max_turns = ants + path_length(shortest);
-	i = 0;
-	while (i <= max_turns)
+	if (room == NULL)
+		return ;
+	room->end_dist = end_dist;
+	tunnel = room->tunnels;
+	while (tunnel != NULL)
 	{
-		p = get_shortest_path(s, e, i, 1);
-		if (p != NULL)
-			return (p);
-		i++;
-	}
-	return (NULL);
-}
-
-void	free_path(t_path *path)
-{
-	t_path	*next;
-
-	while (path != NULL)
-	{
-		next = path->next;
-		free(path);
-		path = next;
+		if (tunnel->room->end_dist == -1 || tunnel->room->end_dist > end_dist + 1)
+			save_distances(tunnel->room, end_dist + 1);
+		tunnel = tunnel->next;
 	}
 }

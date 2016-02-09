@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:20:00 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 14:45:16 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 17:26:35 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_room	*append_new_room(char *name, t_room *room_lst, char s_e)
 	new->next = NULL;
 	new->tunnels = NULL;
 	new->ant = 0;
-	new->has_moved = 0;
+	new->end_dist = -1;
 	if (room_lst == NULL)
 		return (new);
 	parser = room_lst;

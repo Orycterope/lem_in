@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 16:12:15 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 14:46:54 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 17:26:03 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct		s_room
 	char			*name;
 	char			start_end;
 	int				ant;
-	int				has_moved;
+	int				end_dist;
 	struct s_tunnel	*tunnels;
 	struct s_room	*next;
 }					t_room;

@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:32:14 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 14:29:20 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:26:32 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,8 @@
 # include "room.h"
 # include "tunnel.h"
 
-typedef struct		s_path
-{
-	t_room			*room;
-	struct s_path	*next;
-}					t_path;
-
-t_path	*append_new_room_to_path(t_room *room, t_path *path);
-t_path	*get_shortest_path(t_room *start, t_room *end, int depth, int ignore);
-t_path	*get_resonable_path(t_room *s, t_room *e, int ants, t_path *shortest); //ants are ants at start
-int		path_length(t_path *path);
-void	free_path(t_path *path);
+//t_room	*get_shortest_path(t_room *start, t_room *end, int depth, int ignore);
+t_room	*get_resonable_path(t_room *room, t_room *start, int ants); //ants are ants at start
+void	save_distances(t_room *room, int end_dist);
 
 #endif

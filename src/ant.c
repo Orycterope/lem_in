@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 20:57:21 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/08 14:25:57 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:24:51 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ t_room	*get_ant_position(int ant, t_room *room)
 void	move_ant(t_room *room1, t_room *room2)
 {
 	if (room1->ant == 0 || room2->ant != 0)
-		return ; // norme
+		return;
 	room2->ant = room1->ant;
-	room2->has_moved = 1;
 	room1->ant = 0;
 	print_ant(room2->ant, room2);
 	if (room1->start_end == 's')
@@ -46,18 +45,17 @@ void	move_ant(t_room *room1, t_room *room2)
 		room2->ant = 0;
 }
 
-int		ant_decide(t_room *location, int rmng_ants, t_room *rooms, t_path *s)
+int		ant_decide(t_room *location, int rmng_ants, t_room *start)
 {
-	t_path	*path;
+	t_room	*path;
 	int		moved;
 
 	moved = 0;
-	path = get_resonable_path(location, get_end(rooms), rmng_ants, s);
+	path = get_resonable_path(location, start, rmng_ants);
 	if (path != NULL)
 	{
 		moved = 1;
-		move_ant(location, path->next->room);
+		move_ant(location, path);
 	}
-	free(path);
 	return (moved);
 }
