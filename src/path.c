@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:34:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 19:44:23 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 20:03:47 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_room	*get_resonable_path(t_room *room, t_room *start, int ants)
 	int			max_turns;
 	t_tunnel	*tunnel;
 
-	max_turns = ants + start->end_dist - 1; // -2 ?
+	max_turns = ants + start->end_dist - 1;
 	tunnel = room->tunnels;
 	while (tunnel != NULL)
 	{
@@ -31,3 +31,17 @@ t_room	*get_resonable_path(t_room *room, t_room *start, int ants)
 	return (NULL);
 }
 
+int		get_tunnel_nbr(t_room *room)
+{
+	t_tunnel	*t;
+	int			n;
+
+	t = room->tunnels;
+	n = 0;
+	while (t != NULL)
+	{
+		n++;
+		t = t->next;
+	}
+	return (n);
+}

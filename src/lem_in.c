@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 18:43:16 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 19:57:10 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	lem_in(t_room *rooms, int ants, t_room *start)
 	{
 		execute_turn(rooms, start, first_ant, ants);
 		while (get_ant_position(first_ant, rooms) == NULL && first_ant < ants)
-				first_ant++;
+			first_ant++;
 		ft_putchar('\n');
 	}
 }

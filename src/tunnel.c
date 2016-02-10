@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:49:06 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 15:30:41 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 20:01:02 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		sort_tunnels_by_dist(t_room *room)
 	t_tunnel	*tunnel;
 
 	if (room->tunnels == NULL)
-		return;
+		return ;
 	while (!(tunnels_are_sorted(room)))
 	{
 		tunnel = room->tunnels;
@@ -88,19 +88,4 @@ void		free_tunnels(t_room *room)
 		free(tunnel);
 		tunnel = next;
 	}
-}
-
-int			get_tunnel_nbr(t_room *room)
-{
-	t_tunnel	*t;
-	int			n;
-
-	t = room->tunnels;
-	n = 0;
-	while (t != NULL)
-	{
-		n++;
-		t = t->next;
-	}
-	return (n);
 }

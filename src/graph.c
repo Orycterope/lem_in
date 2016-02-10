@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 15:26:52 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 18:29:59 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 20:01:45 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	check_room(t_room *room, t_room *previous)
 	t_room		*room2;
 
 	if (room->start_end == 'e')
-		return;
+		return ;
 	t = room->tunnels->next;
 	while (get_tunnel_nbr(room) > 2)
 	{
@@ -73,7 +73,7 @@ void		remove_dead_tunnels(t_room *rooms)
 	}
 }
 
-void	cut_branches(t_room *rooms, t_room *start)
+void		cut_branches(t_room *rooms, t_room *start)
 {
 	t_tunnel	*tunnel;
 
@@ -90,12 +90,12 @@ void	cut_branches(t_room *rooms, t_room *start)
 	}
 }
 
-void	save_distances(t_room *room, int end_dist)
+void		save_distances(t_room *room, int end_dist)
 {
 	t_tunnel	*tunnel;
 
 	if (room == NULL)
-		return;
+		return ;
 	room->end_dist = end_dist;
 	if (room->start_end != 's')
 	{
