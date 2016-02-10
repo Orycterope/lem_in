@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 15:26:52 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 17:29:38 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 18:29:59 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ static void	check_room(t_room *room, t_room *previous)
 			room2 = t->room;
 			block_tunnel(room, room2);
 			block_tunnel(room2, room);
+			t = room->tunnels;
 		}
 		t = t->next;
 	}
-	check_room(room->tunnels->room, room);
+	if (get_tunnel_nbr(room) != 1)
+		check_room(room->tunnels->room, room);
 }
 
 void		remove_dead_tunnels(t_room *rooms)
