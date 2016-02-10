@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 19:57:10 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 20:57:13 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,6 @@ int		main(void)
 	save_distances(end, 0);
 	remove_dead_tunnels(rooms);
 	lem_in(rooms, ant_nbr, start);
+	free_rooms(rooms);
+	return (0);
 }

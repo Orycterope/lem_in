@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 22:52:46 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 21:10:24 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int			get_lem_nbr(void)
 	char	*line;
 	int		i;
 	int		cont;
+	int		out;
 
 	cont = 1;
+	line = NULL;
 	while (cont || line[0] == '#')
 	{
+		free(line);
 		cont = 0;
 		if (get_next_line(0, &line) < 1)
 			return (-1);
@@ -31,7 +34,9 @@ int			get_lem_nbr(void)
 	while (line[i] != '\0')
 		if (!ft_isdigit(line[i++]))
 			return (-1);
-	return (ft_atoi(line));
+	out = ft_atoi(line);
+	free(line);
+	return (out);
 }
 
 static int	is_valid_room_desc(char *line)
@@ -90,13 +95,17 @@ static int	save_tubes(t_room *room_lst, char *line)
 		if (line[0] != '#')
 		{
 			if (!is_valid_tube_desc(line, room_lst))
+			{
+				free(line);
 				return (0);
+			}
 			room_name2 = ft_strchr(line, '\0') + 1;
 			room1 = get_room(line, room_lst);
 			room2 = get_room(room_name2, room_lst);
 			append_new_tunnel_to_room(room1, room2);
 			append_new_tunnel_to_room(room2, room1);
 		}
+		free(line);
 		res = get_next_line(0, &line);
 	}
 	return (res);
@@ -117,7 +126,10 @@ t_room		*save_rooms(void)
 		if (ft_strcmp("##end", line) == 0)
 			start_end = 'e';
 		if (line[0] == '#')
+		{
+			free(line);
 			continue;
+		}
 		if (!(is_valid_room_desc(line)))
 			break ;
 		room_lst = append_new_room(line, room_lst, start_end);
