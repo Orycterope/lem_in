@@ -6,7 +6,7 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/02/10 00:06:36 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/02/10 21:26:58 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ LIBFT_OBJ_PATH = obj/libft
 SRC_NAME =	lem_in.c \
 			ant.c \
 			path.c \
+			graph.c \
 			room.c \
 			tunnel.c \
 			save_description.c
