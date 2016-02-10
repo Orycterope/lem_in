@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 20:57:21 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 21:02:46 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 16:40:29 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,18 @@ void	move_ant(t_room *room1, t_room *room2)
 
 int		ant_decide(t_room *location, int rmng_ants, t_room *start)
 {
-	t_room	*path;
+	t_room	*next;
 	int		moved;
 
 	moved = 0;
-	path = get_resonable_path(location, start, rmng_ants);
-	if (path != NULL)
+	if (location != start)
+		next = location->tunnels->room;
+	else
+		next = get_resonable_path(location, start, rmng_ants);
+	if (next != NULL)
 	{
 		moved = 1;
-		move_ant(location, path);
+		move_ant(location, next);
 	}
 	return (moved);
 }

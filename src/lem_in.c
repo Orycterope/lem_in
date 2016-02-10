@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/09 23:22:23 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:06:49 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,13 @@ void	execute_turn(t_room *rooms, t_room *start, int first_ant, int tt_ants)
 	start->tunnels = first_tunnel;
 }
 
-void	lem_in(t_room *rooms, int ants, t_room *start, t_room *end)
+void	lem_in(t_room *rooms, int ants, t_room *start)
 {
 	int		first_ant;
 	int		i;
 
 	i = 0;
 	first_ant = 1;
-	save_distances(end, 0);
-	if (start->end_dist == -1)
-		error();
 	while (start->ant < ants || get_ant_position(first_ant, rooms) != NULL)
 	{
 		execute_turn(rooms, start, first_ant, ants);
@@ -81,5 +78,12 @@ int		main(void)
 	if (start == NULL || end == NULL || start == end)
 		error();
 	start->ant = 1;
-	lem_in(rooms, ant_nbr, start, end);
+	save_distances(end, 0);
+	remove_dead_tunnels(rooms);
+	if (start->end_dist == -1)
+		error();
+	cut_branches(rooms, start);
+	save_distances(end, 0);
+	remove_dead_tunnels(rooms);
+	lem_in(rooms, ant_nbr, start);
 }

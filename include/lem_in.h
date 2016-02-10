@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 19:43:28 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/01/28 23:51:02 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/02/10 15:27:28 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "get_next_line.h"
 # include "libft.h"
 # include "room.h"
+# include "graph.h"
 # include "path.h"
 # include "tunnel.h"
 # include "ant.h"
