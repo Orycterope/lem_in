@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/03/18 17:39:25 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/18 17:53:03 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,26 @@ void	lem_in(t_room *rooms, int ants, t_room *start)
 	}
 }
 
+void	ft_prepare_rooms(t_room *start, t_room *end, t_room *rooms)
+{
+	if (start == NULL || end == NULL || start == end)
+		error();
+	start->ant = 1;
+	save_distances(end, 0);
+	remove_dead_tunnels(rooms);
+	if (start->end_dist == -1)
+		error();
+	cut_branches(rooms, start);
+	save_distances(end, 0);
+	remove_dead_tunnels(rooms);
+}
+
 int		main(void)
 {
-	int		ant_nbr;
-	t_room	*rooms;
-	t_room	*start;
-	t_room	*end;
+	int			ant_nbr;
+	t_room		*rooms;
+	t_room		*start;
+	t_room		*end;
 	t_desc_lst	*desc_lst;
 
 	desc_lst = init_desc_lst();
@@ -78,17 +92,8 @@ int		main(void)
 	rooms = save_rooms(desc_lst);
 	start = get_start(rooms);
 	end = get_end(rooms);
-	if (start == NULL || end == NULL || start == end)
-		error();
-	start->ant = 1;
-	save_distances(end, 0);
-	remove_dead_tunnels(rooms);
-	if (start->end_dist == -1)
-		error();
+	ft_prepare_rooms(start, end, rooms);
 	repeat_desc_lines(desc_lst);
-	cut_branches(rooms, start);
-	save_distances(end, 0);
-	remove_dead_tunnels(rooms);
 	lem_in(rooms, ant_nbr, start);
 	free_rooms(rooms);
 	return (0);

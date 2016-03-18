@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/03/18 17:42:37 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/18 18:07:16 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ static int	is_valid_tube_desc(char *line, t_room *room_lst)
 static int	save_tubes(t_room *room_lst, char *line, t_desc_lst *desc_lst)
 {
 	int		res;
-	char	*room_name2;
 	t_room	*room1;
 	t_room	*room2;
 
@@ -101,9 +100,8 @@ static int	save_tubes(t_room *room_lst, char *line, t_desc_lst *desc_lst)
 				free(line);
 				return (0);
 			}
-			room_name2 = ft_strchr(line, '\0') + 1;
 			room1 = get_room(line, room_lst);
-			room2 = get_room(room_name2, room_lst);
+			room2 = get_room(ft_strchr(line, '\0') + 1, room_lst);
 			append_new_tunnel_to_room(room1, room2);
 			append_new_tunnel_to_room(room2, room1);
 		}
@@ -125,10 +123,8 @@ t_room		*save_rooms(t_desc_lst *desc_lst)
 	while (get_next_line(0, &line) > 0)
 	{
 		save_desc_line(line, desc_lst);
-		if (ft_strcmp("##start", line) == 0)
-			start_end = 's';
-		if (ft_strcmp("##end", line) == 0)
-			start_end = 'e';
+		if (ft_strcmp("##start", line) == 0 || ft_strcmp("##end", line) == 0)
+			start_end = ft_strcmp("##start", line) == 0 ? 's' : 'e';
 		if (line[0] == '#')
 		{
 			free(line);
