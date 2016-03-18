@@ -6,15 +6,16 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 21:10:24 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/18 17:42:37 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "room.h"
 #include "tunnel.h"
+#include "description_copy.h"
 
-int			get_lem_nbr(void)
+int			get_lem_nbr(t_desc_lst *desc_lst)
 {
 	char	*line;
 	int		i;
@@ -29,6 +30,7 @@ int			get_lem_nbr(void)
 		cont = 0;
 		if (get_next_line(0, &line) < 1)
 			return (-1);
+		save_desc_line(line, desc_lst);
 	}
 	i = 0;
 	while (line[i] != '\0')
@@ -82,7 +84,7 @@ static int	is_valid_tube_desc(char *line, t_room *room_lst)
 			&& get_room(&(line[j]), room_lst) != NULL);
 }
 
-static int	save_tubes(t_room *room_lst, char *line)
+static int	save_tubes(t_room *room_lst, char *line, t_desc_lst *desc_lst)
 {
 	int		res;
 	char	*room_name2;
@@ -107,11 +109,12 @@ static int	save_tubes(t_room *room_lst, char *line)
 		}
 		free(line);
 		res = get_next_line(0, &line);
+		save_desc_line(line, desc_lst);
 	}
 	return (res);
 }
 
-t_room		*save_rooms(void)
+t_room		*save_rooms(t_desc_lst *desc_lst)
 {
 	t_room	*room_lst;
 	char	*line;
@@ -121,6 +124,7 @@ t_room		*save_rooms(void)
 	room_lst = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
+		save_desc_line(line, desc_lst);
 		if (ft_strcmp("##start", line) == 0)
 			start_end = 's';
 		if (ft_strcmp("##end", line) == 0)
@@ -135,7 +139,7 @@ t_room		*save_rooms(void)
 		room_lst = append_new_room(line, room_lst, start_end);
 		start_end = 0;
 	}
-	if (room_lst == NULL || save_tubes(room_lst, line) == -1)
+	if (room_lst == NULL || save_tubes(room_lst, line, desc_lst) == -1)
 		return (NULL);
 	return (room_lst);
 }

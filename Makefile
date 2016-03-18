@@ -6,12 +6,12 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/03/18 15:14:01 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/03/18 16:04:13 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-CC = gcc
+CC = gcc -g
 CPPFLAGS = -I include
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L.
@@ -29,7 +29,8 @@ SRC_NAME =	lem_in.c \
 			graph.c \
 			room.c \
 			tunnel.c \
-			save_description.c
+			save_description.c \
+			description_copy.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

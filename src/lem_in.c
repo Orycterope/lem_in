@@ -6,11 +6,12 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 20:57:13 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/18 17:39:25 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "description_copy.h"
 
 void	error(void)
 {
@@ -68,11 +69,13 @@ int		main(void)
 	t_room	*rooms;
 	t_room	*start;
 	t_room	*end;
+	t_desc_lst	*desc_lst;
 
-	ant_nbr = get_lem_nbr();
+	desc_lst = init_desc_lst();
+	ant_nbr = get_lem_nbr(desc_lst);
 	if (ant_nbr <= 0)
 		error();
-	rooms = save_rooms();
+	rooms = save_rooms(desc_lst);
 	start = get_start(rooms);
 	end = get_end(rooms);
 	if (start == NULL || end == NULL || start == end)
@@ -82,6 +85,7 @@ int		main(void)
 	remove_dead_tunnels(rooms);
 	if (start->end_dist == -1)
 		error();
+	repeat_desc_lines(desc_lst);
 	cut_branches(rooms, start);
 	save_distances(end, 0);
 	remove_dead_tunnels(rooms);

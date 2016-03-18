@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 19:43:28 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 15:27:28 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/18 16:02:30 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 # include "path.h"
 # include "tunnel.h"
 # include "ant.h"
+# include "description_copy.h"
 
 void	error(void);
-int		get_lem_nbr(void);
-t_room	*save_rooms(void);
+int		get_lem_nbr(t_desc_lst *desc_lst);
+t_room	*save_rooms(t_desc_lst *desc_lst);
 
 #endif
