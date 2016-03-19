@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 20:57:21 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 21:01:49 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/19 14:37:57 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 void	print_ant(int ant, t_room *room)
 {
-	ft_putchar('L');
+	ft_putstr("L\x1B[");
+	if (ant % 12 >= 6)
+		ft_putchar('0');
+	else
+		ft_putchar('1');
+	ft_putstr(";3");
+	ft_putnbr(ant % 6 + 1);
+	ft_putchar('m');
 	ft_putnbr(ant);
+	ft_putstr("\x1B[0m");
 	ft_putchar('-');
 	ft_putstr(room->name);
 	ft_putchar(' ');
