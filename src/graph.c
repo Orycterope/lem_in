@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 15:26:52 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 20:01:45 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/22 17:24:44 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,4 @@ void		save_distances(t_room *room, int end_dist)
 			tunnel = tunnel->next;
 		}
 	}
-	sort_tunnels_by_dist(room);
 }

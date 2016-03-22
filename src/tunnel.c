@@ -6,23 +6,30 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:49:06 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/02/10 20:01:02 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/22 16:45:07 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tunnel.h"
 
-void		*append_new_tunnel_to_room(t_room *room, t_room *neighbor)
+void		append_new_tunnel_to_room(t_room *room, t_room *neighbor)
 {
 	t_tunnel	*new;
+	t_tunnel	*i;
 
+	i = room->tunnels;
+	while (i != NULL)
+	{
+		if (i->room == neighbor)
+			return ;
+		i = i->next;
+	}
 	new = (t_tunnel*)malloc(sizeof(t_tunnel));
 	if (new == NULL)
-		return (NULL);
+		return ;
 	new->room = neighbor;
 	new->next = room->tunnels;
 	room->tunnels = new;
-	return (new);
 }
 
 static int	tunnels_are_sorted(t_room *room)
@@ -62,17 +69,21 @@ void		sort_tunnels_by_dist(t_room *room)
 {
 	t_tunnel	*tunnel;
 
-	if (room->tunnels == NULL)
-		return ;
-	while (!(tunnels_are_sorted(room)))
+	while (room != NULL)
 	{
-		tunnel = room->tunnels;
-		while (tunnel != NULL && tunnel->next != NULL)
+		if (room->tunnels == NULL)
+			return ;
+		while (!(tunnels_are_sorted(room)))
 		{
-			if (tunnel->room->end_dist > tunnel->next->room->end_dist)
-				swap_tunnels(room, tunnel);
-			tunnel = tunnel->next;
+			tunnel = room->tunnels;
+			while (tunnel != NULL && tunnel->next != NULL)
+			{
+				if (tunnel->room->end_dist > tunnel->next->room->end_dist)
+					swap_tunnels(room, tunnel);
+				tunnel = tunnel->next;
+			}
 		}
+		room = room->next;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 14:42:04 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/03/18 17:53:03 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/22 16:46:28 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	ft_prepare_rooms(t_room *start, t_room *end, t_room *rooms)
 		error();
 	start->ant = 1;
 	save_distances(end, 0);
+	sort_tunnels_by_dist(rooms);
 	remove_dead_tunnels(rooms);
 	if (start->end_dist == -1)
 		error();
