@@ -6,7 +6,7 @@
 /*   By: tvermeil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:24:10 by tvermeil          #+#    #+#             */
-/*   Updated: 2015/11/27 16:10:25 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/23 15:55:13 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char				**ft_strsplit(char	const *s, char c);
 char				*ft_itoa(int n);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
+int					ft_isdigit_str(char	*str);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);

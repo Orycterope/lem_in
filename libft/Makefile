@@ -6,7 +6,7 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/03/18 15:09:49 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/03/23 15:54:55 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC_NAME =    ft_memset.c \
    		    	ft_atoi.c \
    		    	ft_isalpha.c \
    		    	ft_isdigit.c \
+				ft_isdigit_str.c \
    		    	ft_isalnum.c \
    		    	ft_isascii.c \
    		    	ft_isprint.c \

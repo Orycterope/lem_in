@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/03/18 18:07:16 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/23 16:53:23 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int			get_lem_nbr(t_desc_lst *desc_lst)
 		save_desc_line(line, desc_lst);
 	}
 	i = 0;
-	while (line[i] != '\0')
-		if (!ft_isdigit(line[i++]))
-			return (-1);
+	if (!ft_isdigit_str(line))
+		return (-1);
 	out = ft_atoi(line);
 	free(line);
 	return (out);
@@ -45,24 +44,28 @@ static int	is_valid_room_desc(char *line)
 {
 	int		i;
 	int		j;
+	int		k;
+	int		n;
 
 	if (line[0] == 'L')
 		return (0);
-	i = 0;
-	while (line[i] != ' ' && line[i] != '\0')
-		i++;
-	if (line[i] == ' ')
-		line[i++] = '\0';
-	j = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == ' ')
-			j++;
-		else if (!ft_isdigit(line[i]))
-			return (0);
-		i++;
-	}
-	return (j == 1);
+	k = -1;
+	n = 0;
+	while (line[++k] != '\0')
+		if (line[k] == ' ')
+		{
+			if (n == 0)
+				i = k + 1;
+			else
+				j = k + 1;
+			n++;
+			line[k] = '\0';
+		}
+	if (n != 2)
+		return (0);
+	if (!(ft_isdigit_str(line + i) && ft_isdigit_str(line + j)))
+		return (0);
+	return (1);
 }
 
 static int	is_valid_tube_desc(char *line, t_room *room_lst)
