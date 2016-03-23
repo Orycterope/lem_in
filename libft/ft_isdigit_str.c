@@ -6,13 +6,13 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 15:43:25 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/03/23 16:51:41 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/23 17:23:18 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit_str(char	*str)
+int	ft_isdigit_str(char *str)
 {
 	int		i;
 	int		dot;
@@ -21,7 +21,7 @@ int	ft_isdigit_str(char	*str)
 	if (str[0] == '-' || str[0] == '+')
 		str++;
 	if (str[0] == '\0')
-		return  (0);
+		return (0);
 	while (str[0] == '0')
 		str++;
 	i = 0;
