@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/03/23 16:53:23 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/23 17:59:14 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ t_room		*save_rooms(t_desc_lst *desc_lst)
 	while (get_next_line(0, &line) > 0)
 	{
 		save_desc_line(line, desc_lst);
-		if (ft_strcmp("##start", line) == 0 || ft_strcmp("##end", line) == 0)
+		if ((ft_strcmp("##start", line) == 0 && get_start(room_lst) == NULL)
+				|| (ft_strcmp("##end", line) == 0 && get_end(room_lst) == NULL))
 			start_end = ft_strcmp("##start", line) == 0 ? 's' : 'e';
 		if (line[0] == '#')
 		{
