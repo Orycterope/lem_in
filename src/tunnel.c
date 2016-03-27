@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 18:49:06 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/03/22 19:37:12 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/27 14:35:53 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		append_new_tunnel_to_room(t_room *room, t_room *neighbor)
 	t_tunnel	*i;
 
 	i = room->tunnels;
-	while (i != NULL)
+	while (i != NULL && !(room->start_end != 0 && neighbor->start_end != 0))
 	{
 		if (i->room == neighbor)
 			return ;
