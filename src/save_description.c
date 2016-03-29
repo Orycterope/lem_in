@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 17:25:30 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/03/23 17:59:14 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/03/29 17:24:06 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			get_lem_nbr(t_desc_lst *desc_lst)
 	return (out);
 }
 
-static int	is_valid_room_desc(char *line)
+static int	is_valid_room_desc(char *line, t_room *room_lst)
 {
 	int		i;
 	int		j;
@@ -65,7 +65,7 @@ static int	is_valid_room_desc(char *line)
 		return (0);
 	if (!(ft_isdigit_str(line + i) && ft_isdigit_str(line + j)))
 		return (0);
-	return (1);
+	return (get_room(line, room_lst) == NULL);
 }
 
 static int	is_valid_tube_desc(char *line, t_room *room_lst)
@@ -134,7 +134,7 @@ t_room		*save_rooms(t_desc_lst *desc_lst)
 			free(line);
 			continue;
 		}
-		if (!(is_valid_room_desc(line)))
+		if (!(is_valid_room_desc(line, room_lst)))
 			break ;
 		room_lst = append_new_room(line, room_lst, start_end);
 		start_end = 0;
