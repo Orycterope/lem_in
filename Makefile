@@ -6,12 +6,12 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/03/18 16:04:13 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/03/30 16:02:49 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-CC = gcc -g
+CC = gcc
 CPPFLAGS = -I include
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L.
@@ -65,6 +65,7 @@ re: fclean all
 ac: all clean
 
 norme:
-	norminette $(LIBFT_SRC) $(SRC) include/*.h
+	@make -C libft norme
+	@norminette $(SRC) include/*.h
 
 .PHONY: all clean fclean re
